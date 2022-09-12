@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1219</width>
+    <height>743</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1219</width>
+    <height>743</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1219</width>
+    <height>743</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="central_widget">
+   <widget class="QTabWidget" name="tab_widget">
+    <property name="geometry">
+     <rect>
+      <x>14</x>
+      <y>0</y>
+      <width>1181</width>
+      <height>701</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="tab_histogram">
+     <attribute name="title">
+      <string>Histogram</string>
+     </attribute>
+     <widget class="QLabel" name="k_label">
+      <property name="geometry">
+       <rect>
+        <x>1040</x>
+        <y>30</y>
+        <width>21</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>k</string>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="k_input">
+      <property name="geometry">
+       <rect>
+        <x>1070</x>
+        <y>20</y>
+        <width>51</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="minimum">
+       <number>5</number>
+      </property>
+      <property name="maximum">
+       <number>25</number>
+      </property>
+     </widget>
+     <widget class="QWidget" name="horizontalLayoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>1001</width>
+        <height>581</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="bar_layout">
+       <item>
+        <widget class="QWidget" name="bar_chart" native="true"/>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_evaluation">
+     <attribute name="title">
+      <string>Evaluation</string>
+     </attribute>
+    </widget>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>k_input</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>bar_chart</receiver>
+   <slot>update()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1111</x>
+     <y>64</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>526</x>
+     <y>339</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
