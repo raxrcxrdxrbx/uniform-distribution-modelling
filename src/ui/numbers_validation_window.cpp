@@ -7,10 +7,10 @@ MainWindow::MainWindow(QWidget *parent):
     ui(new Ui::MainWindow) {
 
     UniformGenerator::Generate();
-    ui ->setupUi(this);
 
-    m_histogram = new BarPlot();
-    m_histogram->setRenderHint(QPainter::Antialiasing);
+    ui->setupUi(this);
+    m_histogram = new BarPlot(this);
+
     ui->bar_layout->addWidget(m_histogram);
 }
 
@@ -19,4 +19,7 @@ MainWindow::~MainWindow() {
     delete ui;
 }
 
+void MainWindow::on_k_input_valueChanged(int k) {
 
+    emit k_input_valueChanged(k);
+}

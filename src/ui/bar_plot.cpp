@@ -3,27 +3,30 @@
 
 BarPlot::BarPlot(QWidget *parent):
     QChartView(parent) {
+
+    connect(parent, SIGNAL(k_input_valueChanged(int)), this, SLOT(on_k_input_valueChanged(int)));
+
     if (SetData()) {
 
         SetAxes();
-        CreateChart();
+        m_chart->addAxis(m_ax, Qt::AlignBottom);
+        m_chart->addAxis(m_ay, Qt::AlignLeft);
+        m_chart->addSeries(m_series);
         setChart(m_chart);
+        setRenderHint(QPainter::Antialiasing);
     }
 }
 
-bool BarPlot::SetData() {
+bool BarPlot::SetData(int interval_count) {
 
-    auto generated_frequencies = UniformGenerator::GetFrequencies();
+    auto generated_frequencies = UniformGenerator::GetFrequencies(interval_count);
     for (const auto& frequency : generated_frequencies) {
 
         m_data.push_back(qreal(frequency));
     }
 
-    m_set = new QBarSet("frequency");
     m_set->append(m_data);
-
-    m_series = new QBarSeries();
-    if (!m_series->append(m_set)) {
+    if (!m_series->append(m_set) && m_series->barSets().empty()) {
 
         QMessageBox invalid_input_msg_box;
         invalid_input_msg_box.setIcon(QMessageBox::Critical);
@@ -36,26 +39,37 @@ bool BarPlot::SetData() {
         return true;
     }
 }
-void BarPlot::SetAxes() {
+void BarPlot::SetAxes(int interval_count) {
 
-    m_ax = new QValueAxis();
-    m_ax->setTickAnchor(UniformGenerator::GetMinNumber());
-    m_ax->setTickInterval(UniformGenerator::GetIntervalRange());
-    m_ax->setTickType(QValueAxis::TicksDynamic);
+    m_ax->setTickCount(interval_count);
+    m_ax->setTickType(QValueAxis::TicksFixed);
     m_ax->setLabelFormat("%.3f");
-    m_ax->setRange(UniformGenerator::GetMinNumber(), UniformGenerator::GetMaxNumber());
+    m_ax->setMin(UniformGenerator::GetMinNumber());
+    m_ax->setMax(UniformGenerator::GetMaxNumber());
 
-    m_ay = new QValueAxis();
     m_ay->setTickAnchor(0);
     m_ay->setTickInterval(0.5);
     m_ay->setTickType(QValueAxis::TicksDynamic);
     m_ay->setLabelFormat("%.3f");
-    m_ay->setRange(*std::min_element(m_data.begin(), m_data.end()), *std::max_element(m_data.begin(), m_data.end()));
+    m_ay->setMin(*std::min_element(m_data.begin(), m_data.end()));
+    m_ay->setMax(*std::max_element(m_data.begin(), m_data.end()));
 }
-void BarPlot::CreateChart() {
 
-    m_chart = new QChart();
-    m_chart->addAxis(m_ax, Qt::AlignBottom);
-    m_chart->addAxis(m_ay, Qt::AlignLeft);
-    m_chart->addSeries(m_series);
+void BarPlot::on_k_input_valueChanged(int k) {
+
+    m_chart->removeAxis(m_ax);
+    m_chart->removeAxis(m_ay);
+    m_chart->removeSeries(m_series);
+
+    m_set->remove(0, m_data.size());
+    m_data.clear();
+
+    if (SetData(k)) {
+
+        SetAxes(k + 1);
+        m_chart->addAxis(m_ax, Qt::AlignBottom);
+        m_chart->addAxis(m_ay, Qt::AlignLeft);
+        m_chart->addSeries(m_series);
+        repaint();
+    }
 }

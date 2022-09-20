@@ -28,6 +28,12 @@ class MainWindow : public QMainWindow {
 
     Q_OBJECT
 
+signals:
+    void k_input_valueChanged(int k);
+
+private slots:
+    void on_k_input_valueChanged(int k);
+
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();

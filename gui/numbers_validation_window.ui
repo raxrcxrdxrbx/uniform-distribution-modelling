@@ -74,13 +74,31 @@
      <widget class="QWidget" name="horizontalLayoutWidget">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>20</x>
         <y>20</y>
-        <width>1001</width>
+        <width>991</width>
         <height>581</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="bar_layout">
+       <property name="spacing">
+        <number>10</number>
+       </property>
+       <property name="sizeConstraint">
+        <enum>QLayout::SetDefaultConstraint</enum>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
        <item>
         <widget class="QWidget" name="bar_chart" native="true"/>
        </item>
@@ -96,22 +114,5 @@
   </widget>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>k_input</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>bar_chart</receiver>
-   <slot>update()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>1111</x>
-     <y>64</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>526</x>
-     <y>339</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>
