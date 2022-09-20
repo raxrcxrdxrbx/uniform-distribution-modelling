@@ -7,14 +7,13 @@ InputCustomParam::InputCustomParam(QWidget *parent) :
     ui(new Ui::InputCustomParam) {
 
     ui->setupUi(this);
-    DisableUiCustomParamsInput(true);
-
-    numbers_validation_window = new MainWindow();
+    DisableUiCustomParamsInput(true);    
 }
 
 InputCustomParam::~InputCustomParam() {
 
     delete ui;
+    delete numbers_validation_window;
 }
 
 void InputCustomParam::on_custom_params_button_clicked() {
@@ -64,8 +63,9 @@ void InputCustomParam::on_submit_button_pressed() {
         }
     }
 
-	numbers_validation_window->EnableGenerator(a, m, r0, n);
-    numbers_validation_window->PrepareUi();
+    UniformGenerator::SetParams(a, m, r0);
+    UniformGenerator::SetSize(n);
+    numbers_validation_window = new MainWindow();
     numbers_validation_window->show();
 }
 

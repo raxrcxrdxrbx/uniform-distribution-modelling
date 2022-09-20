@@ -22,7 +22,7 @@ set(PROJECT_SOURCES
         src/uniform_generator.cpp               include/uniform_generator.h
         src/ui/params_input_window.cpp          include/ui/params_input_window.h
         src/ui/numbers_validation_window.cpp    include/ui/numbers_validation_window.h
-
+        src/ui/bar_plot.cpp                     include/ui/bar_plot.h
 
         gui/params_input_window.ui
         gui/numbers_validation_window.ui
