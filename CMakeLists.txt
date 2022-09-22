@@ -23,9 +23,12 @@ set(PROJECT_SOURCES
         src/ui/params_input_window.cpp          include/ui/params_input_window.h
         src/ui/numbers_validation_window.cpp    include/ui/numbers_validation_window.h
         src/ui/bar_plot.cpp                     include/ui/bar_plot.h
+        src/ui/line_plot.cpp                    include/ui/line_plot.h
 
         gui/params_input_window.ui
         gui/numbers_validation_window.ui
+        res/resources.qrc
+
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -55,6 +58,7 @@ target_include_directories(uniform-distribution-modelling
     PUBLIC  src
     PRIVATE include
     PRIVATE gui
+    PRIVATE res
 )
 
 target_link_libraries(uniform-distribution-modelling PRIVATE

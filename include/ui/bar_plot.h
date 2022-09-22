@@ -11,9 +11,6 @@ class BarPlot : public QChartView {
 
     Q_OBJECT
 
-public slots:
-    void on_k_input_valueChanged(int k);
-
 public:
     explicit BarPlot(QWidget *parent = nullptr);
 
@@ -24,11 +21,14 @@ private:
     QValueAxis *m_ay = new QValueAxis();
     QChart *m_chart = new QChart();
 
-    QList<qreal> m_data;
+    QList<qreal> m_bar_data;
 
     bool SetData(int interval_count = 5);
-    void SetAxes(int interval_count = 6);
-    void Remove();
+    void SetAxes(int interval_ticks_count = 6);
+
+/*// SIGNALS & SLOTS /////////////////////////////////////////*/
+public slots:
+    void on_k_input_valueChanged(int k);
 };
 
 #endif // BAR_PLOT_H

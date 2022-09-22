@@ -4,85 +4,25 @@
 
 InputCustomParam::InputCustomParam(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::InputCustomParam) {
+    m_ui(new Ui::InputCustomParam) {
 
-    ui->setupUi(this);
+    m_ui->setupUi(this);
+    setWindowIcon(m_icon);
+    setWindowTitle(m_title);
     DisableUiCustomParamsInput(true);    
 }
-
 InputCustomParam::~InputCustomParam() {
 
-    delete ui;
-    delete numbers_validation_window;
+    delete m_ui;
 }
-
-void InputCustomParam::on_custom_params_button_clicked() {
-
-   DisableUiCustomParamsInput(false);
-}
-
-
-void InputCustomParam::on_submit_button_pressed() {
-	
-    QMessageBox invalid_input_msg_box;
-	invalid_input_msg_box.setIcon(QMessageBox::Critical);
-	
-	int a, m, r0, n;
-
-    if (ui->custom_params_button->isChecked()) {
-
-        if(IsCustomParamValid(ui->a_input->displayText()) &&
-            IsCustomParamValid(ui->m_input->displayText()) &&
-            IsCustomParamValid(ui->r0_input->displayText()) &&
-            IsCustomParamValid(ui->n_input->displayText())) {
-
-            a = ui->a_input->displayText().toInt();            
-            m = ui->m_input->displayText().toInt();
-            r0 = ui->r0_input->displayText().toInt();
-            n = ui->n_input->displayText().toInt();
-        }
-        else {            
-            invalid_input_msg_box.setText("Entered parameters aren't valid.");
-            invalid_input_msg_box.exec();
-            return;
-        }
-    }
-    else {
-
-        if (ui->default_params_button->isChecked()) {
-
-            a = 3;
-            m = 5;
-            r0 = 1;
-            n = 10;
-        } 
-		else {            
-            invalid_input_msg_box.setText("Choose the parameter type before proceeding.");
-            invalid_input_msg_box.exec();
-            return;
-        }
-    }
-
-    UniformGenerator::SetParams(a, m, r0);
-    UniformGenerator::SetSize(n);
-    numbers_validation_window = new MainWindow();
-    numbers_validation_window->show();
-}
-
-void InputCustomParam::on_default_params_button_clicked() {
-
-    DisableUiCustomParamsInput(true);
-}
-
-/////////////////////////////////////////////////////////////////
 
 void InputCustomParam::DisableUiCustomParamsInput(bool flag) {
 
-    ui->a_input->setReadOnly(flag);
-    ui->m_input->setReadOnly(flag);
-    ui->r0_input->setReadOnly(flag);
+    m_ui->a_input->setReadOnly(flag);
+    m_ui->m_input->setReadOnly(flag);
+    m_ui->r0_input->setReadOnly(flag);
+    m_ui->n_input->setReadOnly(flag);
 }
-
 bool InputCustomParam::IsCustomParamValid(const QString& param) {
 
     bool status = false;
@@ -90,3 +30,65 @@ bool InputCustomParam::IsCustomParamValid(const QString& param) {
 
     return status;
 }
+
+/*// SIGNALS & SLOTS ///////////////////////////////////////////////////// */
+void InputCustomParam::on_custom_params_button_clicked() {
+
+   DisableUiCustomParamsInput(false);
+}
+void InputCustomParam::on_submit_button_pressed() {
+	
+    QMessageBox invalid_input_msg_box;
+	invalid_input_msg_box.setIcon(QMessageBox::Critical);
+	
+    uint64_t a, m, r0, n;
+
+    if (m_ui->custom_params_button->isChecked()) {
+
+        if(IsCustomParamValid(m_ui->a_input->displayText()) &&
+            IsCustomParamValid(m_ui->m_input->displayText()) &&
+            IsCustomParamValid(m_ui->r0_input->displayText()) &&
+            IsCustomParamValid(m_ui->n_input->displayText())) {
+
+            a = m_ui->a_input->displayText().toULongLong();
+            m = m_ui->m_input->displayText().toULongLong();
+            r0 = m_ui->r0_input->displayText().toULongLong();
+            n = m_ui->n_input->displayText().toULongLong();
+        }
+        else {
+
+            invalid_input_msg_box.setText("Entered parameters aren't valid.");
+            invalid_input_msg_box.exec();
+            return;
+        }
+    }
+    else {
+
+        if (m_ui->default_params_button->isChecked()) {
+
+            a = 3;
+            m = 5;
+            r0 = 1;
+            n = 10;
+        } 
+        else {
+
+            invalid_input_msg_box.setText("Choose the parameter type before proceeding.");
+            invalid_input_msg_box.exec();
+            return;
+        }
+    }
+
+    LehmersGenerator::SetParams(a, m, r0);
+    LehmersGenerator::SetSize(n);
+
+    m_numbers_validation_window = new MainWindow(this);
+    m_numbers_validation_window->setAttribute(Qt::WA_DeleteOnClose);
+    m_numbers_validation_window->show();
+}
+void InputCustomParam::on_default_params_button_clicked() {
+
+    DisableUiCustomParamsInput(true);
+}
+
+

@@ -105,10 +105,235 @@
       </layout>
      </widget>
     </widget>
-    <widget class="QWidget" name="tab_evaluation">
+    <widget class="QWidget" name="tab_estimation">
      <attribute name="title">
-      <string>Evaluation</string>
+      <string>Estimation</string>
      </attribute>
+     <widget class="QWidget" name="horizontalLayoutWidget_2">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>60</y>
+        <width>601</width>
+        <height>521</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="line_layout">
+       <item>
+        <widget class="QWidget" name="line_chart" native="true"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QGroupBox" name="consistent_estimations_box">
+      <property name="geometry">
+       <rect>
+        <x>700</x>
+        <y>180</y>
+        <width>321</width>
+        <height>161</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Consistent estimations</string>
+      </property>
+      <widget class="QLabel" name="c_mean_label">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>40</y>
+         <width>63</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>mean</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="c_variance_label">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>80</y>
+         <width>63</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>variance</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="c_standard_deviation_label">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>120</y>
+         <width>131</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>standard deviation</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="c_standard_deviation_line_edit">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>110</y>
+         <width>113</width>
+         <height>26</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="c_mean_line_edit">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>30</y>
+         <width>113</width>
+         <height>26</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="c_variance_line_edit">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>70</y>
+         <width>113</width>
+         <height>26</height>
+        </rect>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="express_estimatimations_box">
+      <property name="geometry">
+       <rect>
+        <x>700</x>
+        <y>370</y>
+        <width>321</width>
+        <height>161</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Express estimations</string>
+      </property>
+      <widget class="QLabel" name="e_mean_label">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>40</y>
+         <width>63</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>mean</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="e_variance_label">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>80</y>
+         <width>63</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>variance</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="e_standard_deviation_label">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>120</y>
+         <width>131</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>standard deviation</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="e_mean_line_edit">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>30</y>
+         <width>113</width>
+         <height>26</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="e_variance_line_edit">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>70</y>
+         <width>113</width>
+         <height>26</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="e_standard_deviation_line_edit">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>110</y>
+         <width>113</width>
+         <height>26</height>
+        </rect>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QLabel" name="p_label">
+      <property name="geometry">
+       <rect>
+        <x>700</x>
+        <y>70</y>
+        <width>16</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>P</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="l_label">
+      <property name="geometry">
+       <rect>
+        <x>700</x>
+        <y>120</y>
+        <width>21</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>L</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="p_line_edit">
+      <property name="geometry">
+       <rect>
+        <x>740</x>
+        <y>70</y>
+        <width>113</width>
+        <height>26</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="l_line_edit">
+      <property name="geometry">
+       <rect>
+        <x>740</x>
+        <y>120</y>
+        <width>113</width>
+        <height>26</height>
+       </rect>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>

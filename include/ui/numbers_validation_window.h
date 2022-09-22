@@ -1,8 +1,6 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <memory>
-
 #include <QMainWindow>
 #include <QList>
 #include <QtGlobal>
@@ -15,6 +13,7 @@
 #include <QMessageBox>
 
 #include "bar_plot.h"
+#include "line_plot.h"
 #include "uniform_generator.h"
 
 
@@ -28,18 +27,27 @@ class MainWindow : public QMainWindow {
 
     Q_OBJECT
 
+public:
+    MainWindow(QWidget *parent = nullptr);
+    ~MainWindow();
+
+private:
+    Ui::MainWindow *m_ui;
+    QString m_title = "Randomness tests";
+    BarPlot *m_histogram;
+    LinePlot *m_estimations;
+
+    std::vector<QString> m_consistent = {"", "", ""};
+    std::vector<QString> m_express = {"", "", ""};
+    QString m_period_length;
+    QString m_aperiodicity_segment;
+
+/*// SIGNALS & SLOTS /////////////////////////////////////////*/
 signals:
     void k_input_valueChanged(int k);
 
 private slots:
     void on_k_input_valueChanged(int k);
 
-public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
-
-private:
-    Ui::MainWindow *ui;
-    BarPlot *m_histogram;
 };
 #endif // MAINWINDOW_H
