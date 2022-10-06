@@ -5,7 +5,7 @@ Project might be helpful if:
 
 <br>Project implements Lehmer random number generator and checks its randomness.
 <br>Parameters' input is the first window to appear. Here you can choose default parameters for Lehmer's generator or enter yours.
-![image_0](./md_img/input_img.png)
+<br>![image_0](./md_img/input_img.png)
 <br>After hitting submit button you'll see a bar plot which represents "relative" frequencies showing 
 the proportion of random numbers that fall into each of five intervals (number of intervals can be changed (from 5 to 25)).
 ![image_1](./md_img/bar_plot_img.png)
