@@ -1,7 +1,7 @@
-#include "include/uniform_generator.h"
+#include "lehmers_generator.h"
 
     uint64_t LehmersGenerator::m_a = 0;
-    uint64_t LehmersGenerator::m_m = 0;
+    uint64_t LehmersGenerator::m_m = 1;
     uint64_t LehmersGenerator::m_r0 = 0;
     size_t LehmersGenerator::m_size = 0;
     std::vector<float> LehmersGenerator::m_random_numbers;
@@ -10,21 +10,19 @@
 void LehmersGenerator::Generate() {
 
     m_random_numbers.clear();
-    uint64_t r0 = m_r0;
     uint64_t a = m_a;
     uint64_t m = m_m;
+    uint64_t r0 = m_r0;
     float tmp = 0.0f;
 
     for (int idx = 0; idx < m_size; ++idx) {
-       // m_r0 = (m_a * m_r0) % m_m;
         r0 = (a * r0) % m;
-       // m_random_numbers.push_back(float((m_r0)) / m_m);
-        tmp = float(r0)/m;
+        tmp = float(r0) / m;
         m_random_numbers.push_back(tmp);
     } 
 }
 
-void LehmersGenerator::SetParams(int a, int m, int r0) {
+void LehmersGenerator::SetParams(uint64_t a, uint64_t m, uint64_t r0) {
 
     m_a = a;
     m_m = m;
@@ -172,11 +170,12 @@ int LehmersGenerator::GetPeriodLength() {
     bool is_first_overlap = false;
     bool is_second_overlap = false;
 
+
     auto last_genereted =  m_random_numbers[m_random_numbers.size() - 1];
     while (!is_first_overlap || !is_second_overlap) {
 
-        r0 = (m_a * r0) % m_m;
-        auto rand = float(r0) / m_m;
+        r0 = m_a * r0 % m_m;
+        float rand = float(r0) / m_m;
         m_additional_random_data.push_back(rand);
         if(m_additional_random_data[idx] == last_genereted) {
 

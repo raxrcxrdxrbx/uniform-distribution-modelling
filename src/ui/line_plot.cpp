@@ -1,5 +1,5 @@
 
-#include "include/ui/line_plot.h"
+#include "ui/line_plot.h"
 
 LinePlot::LinePlot(QWidget *parent):
     QChartView(parent) {

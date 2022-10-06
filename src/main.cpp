@@ -1,6 +1,6 @@
 #include <QApplication>
 
-#include "include/ui/params_input_window.h"
+#include "ui/params_input_window.h"
 
 int main(int argc, char *argv[])
 {

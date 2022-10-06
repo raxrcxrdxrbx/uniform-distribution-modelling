@@ -1,6 +1,6 @@
 
-#include "include/ui/numbers_validation_window.h"
-#include "gui/ui_numbers_validation_window.h"
+#include "ui/numbers_validation_window.h"
+#include "res/ui_numbers_validation_window.h"
 
 MainWindow::MainWindow(QWidget *parent):
     QMainWindow(parent),

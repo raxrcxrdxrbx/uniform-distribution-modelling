@@ -1,5 +1,5 @@
 
-#include "include/ui/bar_plot.h"
+#include "ui/bar_plot.h"
 
 BarPlot::BarPlot(QWidget *parent):
     QChartView(parent) {

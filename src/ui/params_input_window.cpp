@@ -1,6 +1,6 @@
 
-#include "include/ui/params_input_window.h"
-#include "gui/ui_params_input_window.h"
+#include "ui/params_input_window.h"
+#include "res/ui_params_input_window.h"
 
 InputCustomParam::InputCustomParam(QWidget *parent) :
     QDialog(parent),
@@ -23,14 +23,13 @@ void InputCustomParam::DisableUiCustomParamsInput(bool flag) {
     m_ui->r0_input->setReadOnly(flag);
     m_ui->n_input->setReadOnly(flag);
 }
-bool InputCustomParam::IsCustomParamValid(const QString& param) {
+bool InputCustomParam::IsCustomParamValidInt(const QString& param) {
 
     bool status = false;
-    param.toInt(&status);
+    param.toULongLong(&status);
 
     return status;
 }
-
 /*// SIGNALS & SLOTS ///////////////////////////////////////////////////// */
 void InputCustomParam::on_custom_params_button_clicked() {
 
@@ -41,14 +40,15 @@ void InputCustomParam::on_submit_button_pressed() {
     QMessageBox invalid_input_msg_box;
 	invalid_input_msg_box.setIcon(QMessageBox::Critical);
 	
-    uint64_t a, m, r0, n;
+    uint64_t a, m, n;
+    float r0;
 
     if (m_ui->custom_params_button->isChecked()) {
 
-        if(IsCustomParamValid(m_ui->a_input->displayText()) &&
-            IsCustomParamValid(m_ui->m_input->displayText()) &&
-            IsCustomParamValid(m_ui->r0_input->displayText()) &&
-            IsCustomParamValid(m_ui->n_input->displayText())) {
+        if(IsCustomParamValidInt(m_ui->a_input->displayText()) &&
+            IsCustomParamValidInt(m_ui->m_input->displayText()) &&
+            IsCustomParamValidInt(m_ui->r0_input->displayText()) &&
+            IsCustomParamValidInt(m_ui->n_input->displayText())) {
 
             a = m_ui->a_input->displayText().toULongLong();
             m = m_ui->m_input->displayText().toULongLong();
@@ -66,10 +66,10 @@ void InputCustomParam::on_submit_button_pressed() {
 
         if (m_ui->default_params_button->isChecked()) {
 
-            a = 3;
-            m = 5;
-            r0 = 1;
-            n = 10;
+            a = 16807;
+            m = 2147483647;
+            r0 = 2836;
+            n = 1000000;
         } 
         else {
 
